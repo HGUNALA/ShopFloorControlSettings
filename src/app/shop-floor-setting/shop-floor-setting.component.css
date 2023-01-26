@@ -1,0 +1,39 @@
+.labelHead {
+   font-size: medium;text-align: left; margin-top:5px; margin-left: -20px;
+}
+.labelCmpGap {
+   margin-top: -20px;
+}
+.mainHead {
+   text-align: left;font-size: larger; margin: 5px 0 0 20px;
+}
+.mainHeadInput {
+   height: 35px; margin-left:5px;
+}
+.settingLabel {
+   margin: 20px 0 8px -1px;
+}
+.saveLabel{
+   margin-left: -1px
+}
+.checkInpt {
+   margin-top:10px;
+}
+.canOverrd {
+   margin-top:-10px;
+}
+.checkInpt1 {
+   margin-top:5px;
+}
+.inputHeight {
+   height: 25px;
+}
+.preQuality {
+   margin-top: 8px;
+}
+.preFillQty {
+   margin-top:20px;
+}
+.printLablMin {
+   margin: 3px 0 12px -20px;
+}

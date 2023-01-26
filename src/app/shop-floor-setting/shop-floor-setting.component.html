@@ -1,0 +1,251 @@
+<soho-icons></soho-icons>
+<soho-icons-empty></soho-icons-empty>
+<div class="fourteen columns" soho-busyindicator [activated]="isLoading" [text]=" isLoadingText" [blockUI]="true"
+   [displayDelay]="0">
+   <soho-header>
+      <soho-toolbar-flex>
+         <soho-toolbar-flex-section [isTitle]="true">
+            <h2>
+               <span soho-toolbar-flex-page-title>{{languageSettings["shopFloorControlSettings"]}}</span>
+            </h2>
+
+         </soho-toolbar-flex-section>
+      </soho-toolbar-flex>
+   </soho-header>
+   <div class="row six columns top-padding">
+      <div class="six columns labelHead mainHead">
+         <label>{{languageSettings["division"]}}</label>
+      </div>
+      <div class="field five columns mainHeadInput">
+         <input soho-lookup [columns]="columns" [dataset]="diviFinal" [(ngModel)]="selDiviDesc" [options]="{
+                     paging: true,
+                     filterWhenTyping:true,
+                     pagesize: 5,
+                     pagesizes: [5, 10, 15,25,50]
+                   }" [toolbar]="toolbar" (selected)="onDivision($event)" [placeholder]="languageSettings['division']"
+            [disabled]="false" [disabled]="isDividisable" />
+      </div>
+   </div>
+   <div class="thirteen columns">
+      <hr>
+   </div>
+   <div *ngIf="isApply" class="twelve columns">
+      <div class="row twelve columns settingLabel ">
+
+         <label><B>{{languageSettings["settings"]}}</B></label>
+
+      </div>
+
+      <div class="row six columns">
+         <div class="row twelve columns ">
+            <div class="field six columns labelHead">
+               <label>TIME_REPORTING</label>
+            </div>
+
+            <div class="four columns checkInpt">
+               <input type="checkbox" class="checkbox" name="checkbox1" id="checkbox1" [(ngModel)]="selTR"
+                  (change)="onTime($event)" />
+               <label for="checkbox1" class="checkbox-label"></label>
+            </div>
+
+         </div>
+         <div class="row twelve columns labelCmpGap">
+            <div class=" field six columns labelHead">
+               <label>PLAUSIBILITY_CHECK</label>
+            </div>
+
+            <div class="four columns checkInpt">
+               <input type="checkbox" class="checkbox" name="checkbox2" id="checkbox2" [(ngModel)]="selPC"
+                  (change)="onPLCheck()" />
+               <label for="checkbox2" class="checkbox-label"></label>
+            </div>
+
+         </div>
+         <div class="row twelve columns labelCmpGap">
+            <div class="field six columns labelHead">
+               <label>IN_PROCESS_CONTROL</label>
+            </div>
+
+            <div class="four columns checkInpt">
+               <input type="checkbox" class="checkbox" name="checkbox3" id="checkbox3" [(ngModel)]="selIPC"
+                  (change)="onIPC()" />
+               <label for="checkbox3" class="checkbox-label"></label>
+            </div>
+
+         </div>
+         <div class="row twelve columns labelCmpGap">
+            <div class="field six columns labelHead">
+               <label>TANK_EMPTY_ALLOWED</label>
+            </div>
+
+            <div class="four columns checkInpt">
+               <input type="checkbox" class="checkbox" name="checkbox4" id="checkbox4" [(ngModel)]="selTEA"
+                  (change)="onTEA()" />
+               <label for="checkbox4" class="checkbox-label"></label>
+            </div>
+
+         </div>
+         <div class="row twelve columns labelCmpGap">
+            <div class="field six columns labelHead">
+               <label>PRINT_ENABLED</label>
+            </div>
+
+            <div class="four columns checkInpt">
+               <input type="checkbox" class="checkbox" name="checkbox5" id="checkbox5" [(ngModel)]="selPE"
+                  (change)="onPE()" />
+               <label for="checkbox5" class="checkbox-label"></label>
+            </div>
+
+         </div>
+         <div class="row twelve columns labelCmpGap">
+            <div class="field six columns printLablMin">
+               <label for="print-label-bmin">PRINT_LABEL_BMIN</label>
+            </div>
+            <div class="five columns checkInpt1">
+               <input type="text" id="print-label-bmin inputHeight" class="inputHeight"
+                  data-automation-id="input-print-label-bmin" name="print-label-bmin" [(ngModel)]="selPLB"
+                  (change)="onPLB()" />
+            </div>
+         </div>
+
+         <div class="row twelve columns labelCmpGap">
+            <div class="field six columns labelHead">
+               <label class="preQuality">PRE_FILL_QUANTITY</label>
+            </div>
+
+            <div class="four columns preFillQty">
+               <input type="checkbox" class="checkbox" name="checkbox6" id="checkbox6" [(ngModel)]="selPFQ" />
+               <label for="checkbox6" class="checkbox-label" (change)="onPFQ()"></label>
+            </div>
+
+         </div>
+         <div class="row twelve columns labelCmpGap">
+            <!-- <div class="field">
+               <input type="checkbox" class="checkbox" name="checkbox1" id="checkbox1" />
+               <label for="checkbox1" class="checkbox-label">Unchecked</label>
+            </div> -->
+
+            <div class="field six columns labelHead">
+               <label>WARN_SETTING_PALLET_ZERO</label>
+            </div>
+
+
+            <div class="six columns checkInpt">
+               <input type="checkbox" class="checkbox" name="checkbox7" id="checkbox7" [(ngModel)]="selWSP"
+                  (change)="onWSP()" />
+               <label for="checkbox7" class="checkbox-label"></label>
+            </div>
+
+         </div>
+
+
+
+         <div class="row twelve columns saveLabel">
+            <div class="field">
+               <button class="btn-primary btn-style" (click)="onSave($event)"
+                  [disabled]="isSaveDisable">{{languageSettings["save"]}}</button>
+            </div>
+
+         </div>
+      </div>
+
+      <div class="six columns canOverrd">
+         <div class="row twelve columns">
+            <div class="field">
+               <div class="row field seven columns labelHead">
+                  <label>CAN_OVERRIDE_RETURNLOC_AT_RCV</label>
+               </div>
+
+               <div class="field five columns checkInpt">
+                  <input type="checkbox" class="checkbox" name="checkbox9" id="checkbox9" [(ngModel)]="selCOR"
+                     (change)="onCOR()" />
+                  <label for="checkbox9" class="checkbox-label"></label>
+               </div>
+            </div>
+
+         </div>
+         <div class="row twelve columns labelCmpGap">
+            <div class="field seven columns labelHead">
+               <label>USE_RETURNLOC_AT_RECEIVE</label>
+            </div>
+
+            <div class="five columns checkInpt1">
+               <input type="checkbox" class="checkbox" name="checkbox8" id="checkbox8" [(ngModel)]="selURA"
+                  (change)="onURA()" />
+               <label for="checkbox8" class="checkbox-label"></label>
+            </div>
+
+         </div>
+         <div class="row twelve columns labelCmpGap">
+            <div class="field seven columns labelHead">
+               <label for="filter-from-date">FILTER_FROM_DATE</label>
+            </div>
+            <div class="five columns">
+               <input type="number" id="filter-from-date inputHeight" soho-input [inputMode]="true"
+                  data-automation-id="input-filter-from-date" class="inputHeight" name="filter-from-date"
+                  [(ngModel)]="selFFD" (change)="onFFD()" />
+            </div>
+         </div>
+         <div class="row twelve columns labelCmpGap">
+            <div class="field seven columns labelHead">
+               <label for="filter-to-date">FILTER_TO_DATE</label>
+            </div>
+            <div class="five columns">
+               <input type="number" id="filter-to-date inputHeight" data-automation-id="input-filter-to-date"
+                  name="filter-to-date" (change)="onFTD()" class="inputHeight" [(ngModel)]="selFTD" />
+            </div>
+         </div>
+         <div class="row twelve columns labelCmpGap">
+            <div class="field seven columns labelHead">
+               <label for="liquid-tank-group">LIQUID_TANK_GROUP</label>
+            </div>
+            <div class="five columns">
+               <input type="text" id="liquid-tank-group inputHeight" class="inputHeight"
+                  data-automation-id="input-liquid-tank-group" name="liquid-tank-group" [(ngModel)]="selLTG"
+                  (change)="onLTG()" />
+            </div>
+         </div>
+
+         <div class="row twelve columns labelCmpGap">
+            <div class="field seven columns labelHead ">
+               <label>LOCK_ISSUE_PERCENTAGE</label>
+            </div>
+
+            <div class="five columns checkInpt1">
+               <input type="checkbox" class="checkbox" name="checkbox11" id="checkbox11" [(ngModel)]="selLIP"
+                  (change)="onLIP()" />
+               <label for="checkbox11" class="checkbox-label"></label>
+            </div>
+
+         </div>
+         <div class="row twelve columns labelCmpGap">
+            <div class="field seven columns labelHead">
+               <label>LOCK_RECEIPT_PERCENTAGE</label>
+            </div>
+
+            <div class="four columns checkInpt1">
+               <input type="checkbox" class="checkbox" name="checkbox12" id="checkbox12" [(ngModel)]="selLRP"
+                  (change)="onLRP()" />
+               <label for="checkbox12" class="checkbox-label"></label>
+            </div>
+
+         </div>
+         <div class="row twelve columns labelCmpGap">
+            <div class="field seven columns labelHead">
+               <label>EXPIRATION_DATE_ENABLED</label>
+            </div>
+
+            <div class="four columns checkInpt1">
+               <input type="checkbox" class="checkbox" name="checkbox13" id="checkbox13" [(ngModel)]="selEDE"
+                  (change)="onEDE()" />
+               <label for="checkbox13" class="checkbox-label"></label>
+            </div>
+
+         </div>
+      </div>
+
+
+   </div>
+
+
+</div>
